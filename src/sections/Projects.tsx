@@ -100,12 +100,6 @@ export const Projects: React.FC = () => {
                         className="absolute inset-0 flex flex-col justify-end p-6 z-10"
                       >
                         <div className="space-y-2">
-                          {project.metrics && (
-                            <div className="flex items-center gap-2 text-primary text-sm font-semibold">
-                              <TrendingUp className="w-4 h-4" />
-                              <span>{project.metrics}</span>
-                            </div>
-                          )}
                           <p className="text-white/80 text-sm line-clamp-3">
                             {project.description}
                           </p>
