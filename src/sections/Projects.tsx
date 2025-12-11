@@ -86,7 +86,7 @@ export const Projects: React.FC = () => {
                   {/* Project Badge */}
                   <div className="absolute top-4 left-4 z-10">
                     <span className="px-3 py-1.5 bg-primary/90 backdrop-blur-sm text-black text-xs font-semibold rounded-full">
-                      {project.category || "Case Study"}
+                      Case Study
                     </span>
                   </div>
 
