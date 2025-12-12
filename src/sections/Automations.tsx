@@ -7,6 +7,7 @@ import Container from "@/components/Container";
 import { Section } from "@/components/Section";
 import { fadeInUp, staggerChildren } from "@/lib/animations";
 import { automationsData } from "@/data/automations";
+import WorkflowVisualization from "@/components/WorkflowVisualization";
 
 export const Automations: React.FC = () => {
   return (
@@ -33,7 +34,7 @@ export const Automations: React.FC = () => {
               <motion.div
                 key={automation.id}
                 variants={fadeInUp}
-                className="glass-effect rounded-xl p-6 md:p-8 space-y-4 hover:shadow-glow-secondary transition-all duration-300"
+                className="glass-effect rounded-xl p-6 md:p-8 border border-border hover:border-primary/30 transition-all duration-300 space-y-6"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-2 flex-1">
@@ -43,7 +44,12 @@ export const Automations: React.FC = () => {
                   <Bot className="text-secondary flex-shrink-0" size={28} />
                 </div>
 
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-4 text-xs md:text-sm">
+                {/* Workflow Visualization */}
+                <div className="border-t border-border pt-4">
+                  <WorkflowVisualization nodes={automation.nodes} />
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-4 text-xs md:text-sm border-t border-border">
                   <div className="flex items-center gap-2 text-text/60">
                     <Zap size={14} className="text-primary flex-shrink-0" />
                     <span>{automation.efficiency}</span>
