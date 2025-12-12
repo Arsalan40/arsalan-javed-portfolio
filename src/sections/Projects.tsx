@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, TrendingUp } from "lucide-react";
+import Link from "next/link";
 import Container from "@/components/Container";
 import { Section } from "@/components/Section";
 import { fadeInUp, staggerChildren } from "@/lib/animations";
@@ -62,13 +63,16 @@ export const Projects: React.FC = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           >
             {projectsData.slice(0, 6).map((project) => (
-              <motion.div
+              <Link 
                 key={project.id}
-                variants={fadeInUp}
-                onHoverStart={() => setHoveredId(project.id)}
-                onHoverEnd={() => setHoveredId(null)}
-                className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300 cursor-pointer"
+                href={`/projects/${project.slug}`}
               >
+                <motion.div
+                  variants={fadeInUp}
+                  onHoverStart={() => setHoveredId(project.id)}
+                  onHoverEnd={() => setHoveredId(null)}
+                  className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300 cursor-pointer h-full"
+                >
                 {/* Background Image/Gradient */}
                 <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 relative overflow-hidden">
                   {/* Overlay on Hover */}
@@ -128,6 +132,7 @@ export const Projects: React.FC = () => {
                   </div>
                 </div>
               </motion.div>
+            </Link>
             ))}
           </motion.div>
         </div>
