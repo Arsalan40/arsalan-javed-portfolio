@@ -52,7 +52,7 @@ export const Skills: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
           >
             {skillsData.map((category, index) => {
               const Icon = categoryIcons[category.category as keyof typeof categoryIcons] || Briefcase;
@@ -65,20 +65,20 @@ export const Skills: React.FC = () => {
                   className="group relative"
                 >
                   {/* Card */}
-                  <div className="relative h-full glass-effect rounded-2xl p-8 border border-primary/10 hover:border-primary/30 transition-all duration-300 overflow-hidden">
+                  <div className="relative h-full glass-effect rounded-2xl p-6 md:p-8 border border-primary/10 hover:border-primary/30 transition-all duration-300 overflow-hidden">
                     {/* Background Glow on Hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
-                    <div className="relative space-y-6">
+                    <div className="relative space-y-4 md:space-y-6">
                       {/* Icon */}
                       <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-                          <Icon className="w-6 h-6 text-primary" />
+                        <div className="p-2.5 md:p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                          <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                         </div>
                       </div>
 
                       {/* Category Title */}
-                      <h3 className="text-xl md:text-2xl font-bold text-white">
+                      <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white">
                         {category.category}
                       </h3>
 
@@ -88,7 +88,7 @@ export const Skills: React.FC = () => {
                           <span
                             key={skill}
                             data-skill
-                            className="px-3 py-1.5 bg-background/50 rounded-full text-sm text-gray-300 border border-border hover:border-primary/50 hover:text-primary transition-all cursor-pointer"
+                            className="px-2.5 py-1 md:px-3 md:py-1.5 bg-background/50 rounded-full text-xs md:text-sm text-gray-300 border border-border hover:border-primary/50 hover:text-primary transition-all cursor-pointer"
                           >
                             {skill}
                           </span>

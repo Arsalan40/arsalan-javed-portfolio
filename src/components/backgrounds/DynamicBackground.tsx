@@ -25,10 +25,12 @@ export default function DynamicBackground() {
     mouseY.set(mousePosition.y);
   }, [mousePosition, mouseX, mouseY]);
 
-  // Generate particles - only on client
+  // Generate particles - only on client, responsive count
   const particles = useMemo(() => {
     if (!mounted) return [];
-    return Array.from({ length: 50 }, (_, i) => ({
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const particleCount = isMobile ? 25 : 50; // Reduce particles on mobile
+    return Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,

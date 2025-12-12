@@ -10,9 +10,9 @@ import { Button } from "@/components/ui/button";
 import { fadeInUp } from "@/lib/animations";
 
 export const Contact: React.FC = () => {
-  // Replace 'YOUR_FORM_ID' with your actual FormSpree form ID
-  // Get it from https://formspree.io/ after signing up
-  const [state, handleSubmit] = useForm("xannjgjz");
+  // Use environment variable for FormSpree ID
+  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID || "xannjgjz";
+  const [state, handleSubmit] = useForm(formId);
 
   return (
     <Section id="contact" className="bg-card/30">
@@ -27,16 +27,16 @@ export const Contact: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Contact Info */}
             <motion.div
               variants={fadeInUp}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
-              <div className="glass-effect rounded-xl p-6 space-y-4">
+              <div className="glass-effect rounded-xl p-5 md:p-6 space-y-4">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
                     <Mail className="text-primary" size={20} />

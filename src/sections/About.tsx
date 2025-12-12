@@ -141,7 +141,7 @@ export const About: React.FC = () => {
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerChildren}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8"
           >
             {highlights.map((highlight, index) => {
               const Icon = highlight.icon;
@@ -150,15 +150,15 @@ export const About: React.FC = () => {
                   key={highlight.title}
                   variants={fadeInUp}
                   whileHover={{ scale: 1.05 }}
-                  className="text-center space-y-4 p-8 rounded-2xl glass-effect border border-primary/10 hover:border-primary/30 transition-all"
+                  className="text-center space-y-3 md:space-y-4 p-6 md:p-8 rounded-2xl glass-effect border border-primary/10 hover:border-primary/30 transition-all"
                 >
-                  <div className="inline-flex p-4 rounded-2xl bg-primary/10 border border-primary/20">
-                    <Icon className="w-8 h-8 text-primary" />
+                  <div className="inline-flex p-3 md:p-4 rounded-2xl bg-primary/10 border border-primary/20">
+                    <Icon className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
                     {highlight.title}
                   </h3>
-                  <p className="text-gray-400">{highlight.description}</p>
+                  <p className="text-sm md:text-base text-gray-400">{highlight.description}</p>
                 </motion.div>
               );
             })}
