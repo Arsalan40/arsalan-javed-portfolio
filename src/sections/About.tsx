@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/Container";
 import { Section } from "@/components/Section";
@@ -101,6 +102,23 @@ export const About: React.FC = () => {
             viewport={{ once: true, amount: 0.1 }}
             className="text-center space-y-6 max-w-4xl mx-auto"
           >
+            {/* Profile Photo */}
+            <motion.div
+              variants={fadeInUp}
+              className="flex justify-center mb-6"
+            >
+              <div className="relative w-32 h-32 md:w-40 md:h-40">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full blur-xl opacity-50 animate-pulse" />
+                <Image
+                  src="/Arsalan.png"
+                  alt="Arsalan Javed - Business Analyst & Project Manager"
+                  width={160}
+                  height={160}
+                  priority
+                  className="relative rounded-full border-4 border-primary/30 object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
             <motion.h2
               variants={fadeInUp}
               className="text-4xl md:text-5xl lg:text-6xl font-bold"
