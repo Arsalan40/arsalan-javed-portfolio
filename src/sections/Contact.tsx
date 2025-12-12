@@ -1,32 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send, Phone } from "lucide-react";
+import { Mail, MapPin, Send, Phone, CheckCircle2, AlertCircle } from "lucide-react";
+import { useForm, ValidationError } from "@formspree/react";
 import Container from "@/components/Container";
 import { Section } from "@/components/Section";
 import { Button } from "@/components/ui/button";
 import { fadeInUp } from "@/lib/animations";
 
 export const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // Replace 'YOUR_FORM_ID' with your actual FormSpree form ID
+  // Get it from https://formspree.io/ after signing up
+  const [state, handleSubmit] = useForm("xannjgjz");
 
   return (
     <Section id="contact" className="bg-card/30">
@@ -57,7 +43,12 @@ export const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-text/70 text-sm">engr.arsalanjaved@gmail.com</p>
+                    <a 
+                      href="mailto:engr.arsalanjaved@gmail.com"
+                      className="text-text/70 text-sm hover:text-primary transition-colors"
+                    >
+                      engr.arsalanjaved@gmail.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -69,7 +60,12 @@ export const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold">Phone</h3>
-                    <p className="text-text/70 text-sm">+92 331 5497500</p>
+                    <a 
+                      href="tel:+923315497500"
+                      className="text-text/70 text-sm hover:text-accent transition-colors"
+                    >
+                      +92 331 5497500
+                    </a>
                   </div>
                 </div>
               </div>
@@ -88,64 +84,96 @@ export const Contact: React.FC = () => {
             </motion.div>
 
             {/* Contact Form */}
-            <motion.form
+            <motion.div
               variants={fadeInUp}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              onSubmit={handleSubmit}
               className="glass-effect rounded-xl p-6 space-y-4"
             >
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 bg-background/50 border border-white/10 rounded-lg focus:outline-none focus:border-primary transition-colors"
-                />
-              </div>
+              {state.succeeded ? (
+                <div className="flex flex-col items-center justify-center py-12 space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center">
+                    <CheckCircle2 className="text-green-500" size={32} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-green-500">Message Sent!</h3>
+                  <p className="text-text/70 text-center">
+                    Thanks for reaching out! I'll get back to you as soon as possible.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      className="w-full px-4 py-2 bg-background/50 border border-white/10 rounded-lg focus:outline-none focus:border-primary transition-colors"
+                    />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
+                  </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 bg-background/50 border border-white/10 rounded-lg focus:outline-none focus:border-primary transition-colors"
-                />
-              </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      className="w-full px-4 py-2 bg-background/50 border border-white/10 rounded-lg focus:outline-none focus:border-primary transition-colors"
+                    />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                  </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-2 bg-background/50 border border-white/10 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
-                />
-              </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={5}
+                      className="w-full px-4 py-2 bg-background/50 border border-white/10 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
+                    />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
+                  </div>
 
-              <Button type="submit" className="w-full gap-2">
-                <Send size={16} />
-                Send Message
-              </Button>
-            </motion.form>
+                  {state.errors && state.errors.length > 0 && (
+                    <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                      <AlertCircle className="text-red-500" size={20} />
+                      <p className="text-sm text-red-500">
+                        There was a problem submitting your form. Please try again.
+                      </p>
+                    </div>
+                  )}
+
+                  <Button 
+                    type="submit" 
+                    disabled={state.submitting}
+                    className="w-full gap-2"
+                  >
+                    {state.submitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </form>
+              )}
+            </motion.div>
           </div>
         </div>
       </Container>
