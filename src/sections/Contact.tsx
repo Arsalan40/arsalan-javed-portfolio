@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send, Phone, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, MapPin, Send, Phone, CheckCircle2 } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
 import Container from "@/components/Container";
 import { Section } from "@/components/Section";
@@ -144,15 +144,6 @@ export const Contact: React.FC = () => {
                     />
                     <ValidationError prefix="Message" field="message" errors={state.errors} />
                   </div>
-
-                  {state.errors && state.errors.length > 0 && (
-                    <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                      <AlertCircle className="text-red-500" size={20} />
-                      <p className="text-sm text-red-500">
-                        There was a problem submitting your form. Please try again.
-                      </p>
-                    </div>
-                  )}
 
                   <Button 
                     type="submit" 
