@@ -1,15 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Bot, Zap, Clock } from "lucide-react";
+import { Bot, Zap, Clock, Eye } from "lucide-react";
 import Container from "@/components/Container";
 import { Section } from "@/components/Section";
 import { fadeInUp, staggerChildren } from "@/lib/animations";
 import { automationsData } from "@/data/automations";
-import WorkflowVisualization from "@/components/WorkflowVisualization";
+import WorkflowModal from "@/components/WorkflowModal";
 
 export const Automations: React.FC = () => {
+  const [selectedWorkflow, setSelectedWorkflow] = useState<number | null>(null);
+
+  const openModal = (id: number) => setSelectedWorkflow(id);
+  const closeModal = () => setSelectedWorkflow(null);
+
+  const currentAutomation = selectedWorkflow
+    ? automationsData.find((a) => a.id === selectedWorkflow)
+    : null;
   return (
     <Section id="automations">
       <Container>
@@ -44,10 +52,14 @@ export const Automations: React.FC = () => {
                   <Bot className="text-secondary flex-shrink-0" size={28} />
                 </div>
 
-                {/* Workflow Visualization */}
-                <div className="border-t border-border pt-4">
-                  <WorkflowVisualization nodes={automation.nodes} />
-                </div>
+                {/* Preview Button */}
+                <button
+                  onClick={() => openModal(automation.id)}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary/20 to-secondary/20 hover:from-primary/30 hover:to-secondary/30 border border-primary/30 rounded-lg transition-all duration-300 group"
+                >
+                  <Eye size={18} className="text-primary group-hover:scale-110 transition-transform" />
+                  <span className="text-sm font-medium text-text">View Interactive Workflow</span>
+                </button>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-4 text-xs md:text-sm border-t border-border">
                   <div className="flex items-center gap-2 text-text/60">
@@ -62,6 +74,17 @@ export const Automations: React.FC = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Workflow Modal */}
+          {currentAutomation && (
+            <WorkflowModal
+              isOpen={selectedWorkflow !== null}
+              onClose={closeModal}
+              title={currentAutomation.title}
+              nodes={currentAutomation.nodes}
+              connections={currentAutomation.connections}
+            />
+          )}
         </div>
       </Container>
     </Section>
