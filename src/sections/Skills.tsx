@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Briefcase, Target, Zap, Code, Wrench, Users } from "lucide-react";
+import Image from "next/image";
 import Container from "@/components/Container";
 import { Section } from "@/components/Section";
 import { fadeInUp, staggerChildren } from "@/lib/animations";
@@ -100,6 +101,78 @@ export const Skills: React.FC = () => {
               );
             })}
           </motion.div>
+
+          {/* Tools Logos Infinite Scroll */}
+          <div className="relative overflow-hidden py-8">
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+            
+            <motion.div
+              className="flex gap-12 items-center"
+              animate={{
+                x: ["0%", "-50%"],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 25,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* First set of logos */}
+              {[
+                "Jira.svg",
+                "Figma.svg",
+                "Github.svg",
+                "Atlassian.svg",
+                "Analytics.svg",
+                "Docker.svg",
+                "Git.svg",
+                "Mysql.svg",
+                "Wordpress.svg",
+              ].map((logo) => (
+                <div
+                  key={logo}
+                  className="flex items-center justify-center w-16 h-16 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex-shrink-0 transition-all hover:scale-110 hover:bg-white/10"
+                >
+                  <Image
+                    src={`/tools/${logo}`}
+                    alt={logo.replace('.svg', '')}
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                  />
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {[
+                "Jira.svg",
+                "Figma.svg",
+                "Github.svg",
+                "Atlassian.svg",
+                "Analytics.svg",
+                "Docker.svg",
+                "Git.svg",
+                "Mysql.svg",
+                "Wordpress.svg",
+              ].map((logo, index) => (
+                <div
+                  key={`${logo}-${index}`}
+                  className="flex items-center justify-center w-16 h-16 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex-shrink-0 transition-all hover:scale-110 hover:bg-white/10"
+                >
+                  <Image
+                    src={`/tools/${logo}`}
+                    alt={logo.replace('.svg', '')}
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </Container>
     </Section>

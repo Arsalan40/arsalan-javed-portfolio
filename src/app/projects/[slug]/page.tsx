@@ -3,6 +3,7 @@ import { projectsData, type Project } from "@/data/projects";
 import Container from "@/components/Container";
 import { ArrowLeft, Calendar, Users, Briefcase, CheckCircle2, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -61,6 +62,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <p className="text-xl text-gray-400 leading-relaxed">
               {project.description}
             </p>
+
+            {/* Project Image */}
+            {project.image && (
+              <div className="relative w-full h-[400px] rounded-2xl overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-contain p-4"
+                />
+              </div>
+            )}
 
             {/* Project Meta */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">

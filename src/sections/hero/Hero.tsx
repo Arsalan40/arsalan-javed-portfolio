@@ -131,33 +131,6 @@ export default function Hero() {
               </span>
             </motion.a>
           </motion.div>
-
-          {/* Statistics */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="grid grid-cols-3 gap-8 md:gap-16 pt-12 max-w-4xl w-full"
-          >
-            <div className="space-y-2">
-              <div className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
-                20<span className="text-secondary">+</span>
-              </div>
-              <div className="text-sm md:text-base text-gray-400">Projects Completed</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
-                99<span className="text-secondary">%</span>
-              </div>
-              <div className="text-sm md:text-base text-gray-400">Client Satisfaction</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary">
-                3<span className="text-secondary">+</span>
-              </div>
-              <div className="text-sm md:text-base text-gray-400">Years Experience</div>
-            </div>
-          </motion.div>
         </div>
       </Container>
 

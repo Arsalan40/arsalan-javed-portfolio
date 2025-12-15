@@ -12,7 +12,7 @@ const highlights = [
   {
     icon: Briefcase,
     title: "3+ Years Experience",
-    description: "Business Analysis & Project Management",
+    description: "Business Analysis & Implementation Consultant",
   },
   {
     icon: Award,
@@ -80,12 +80,6 @@ const education = [
     institution: "SZABIST",
     year: "2025",
     description: "Shaheed Zulfikar Ali Bhutto Institute of Science and Technology"
-  },
-  {
-    degree: "Certified Scrum Master (CSM)",
-    institution: "Scrum Alliance",
-    year: "2023",
-    description: "Agile project management certification"
   },
 ];
 
@@ -285,7 +279,7 @@ export const About: React.FC = () => {
               <p className="text-gray-400">Continuous learning and professional development</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {education.map((edu, index) => (
                 <motion.div
                   key={index}
@@ -294,7 +288,7 @@ export const About: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   whileHover={{ y: -8 }}
-                  className="glass-effect rounded-2xl p-6 border border-primary/10 hover:border-primary/30 transition-all text-center"
+                  className="glass-effect rounded-2xl p-8 border border-primary/10 hover:border-primary/30 transition-all text-center"
                 >
                   <div className="inline-flex p-4 rounded-2xl bg-primary/10 border border-primary/20 mb-4">
                     <GraduationCap className="w-8 h-8 text-primary" />

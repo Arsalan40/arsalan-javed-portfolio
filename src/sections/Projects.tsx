@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/Container";
 import { Section } from "@/components/Section";
 import { fadeInUp, staggerChildren } from "@/lib/animations";
@@ -62,7 +63,7 @@ export const Projects: React.FC = () => {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           >
-            {projectsData.slice(0, 6).map((project) => (
+            {projectsData.map((project) => (
               <Link 
                 key={project.id}
                 href={`/projects/${project.slug}`}
@@ -75,6 +76,16 @@ export const Projects: React.FC = () => {
                 >
                 {/* Background Image/Gradient */}
                 <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 relative overflow-hidden">
+                  {/* Project Image */}
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : null}
+                  
                   {/* Overlay on Hover */}
                   <AnimatePresence>
                     {hoveredId === project.id && (
@@ -90,7 +101,7 @@ export const Projects: React.FC = () => {
                   {/* Project Badge */}
                   <div className="absolute top-4 left-4 z-10">
                     <span className="px-3 py-1.5 bg-primary/90 backdrop-blur-sm text-black text-xs font-semibold rounded-full">
-                      Case Study
+                      {project.category}
                     </span>
                   </div>
 
@@ -115,9 +126,12 @@ export const Projects: React.FC = () => {
 
                 {/* Card Content */}
                 <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-gray-400">{project.role}</p>
+                  </div>
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2">
