@@ -138,7 +138,7 @@ export const Skills: React.FC = () => {
                   className="flex items-center justify-center w-16 h-16 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex-shrink-0 transition-all hover:scale-110 hover:bg-white/10"
                 >
                   <Image
-                    src={`/tools/${logo}`}
+                    src={`/Tools/${logo}`}
                     alt={logo.replace('.svg', '')}
                     width={40}
                     height={40}
@@ -163,7 +163,7 @@ export const Skills: React.FC = () => {
                   className="flex items-center justify-center w-16 h-16 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex-shrink-0 transition-all hover:scale-110 hover:bg-white/10"
                 >
                   <Image
-                    src={`/tools/${logo}`}
+                    src={`/Tools/${logo}`}
                     alt={logo.replace('.svg', '')}
                     width={40}
                     height={40}

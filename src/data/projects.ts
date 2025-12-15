@@ -251,7 +251,7 @@ export const projectsData: Project[] = [
     slug: "dsr-aurum-horse-trading",
     title: "DSR Aurum - Horse Trading Platform",
     category: "Web Application",
-    image: "/projects/DSR Aurum.png",
+    image: "/Projects/DSR Aurum.png",
     description:
       "Designed and analyzed requirements for a comprehensive horse trading platform connecting buyers, sellers, and breeders. Created intuitive user flows and detailed feature specifications for the equestrian marketplace.",
     technologies: ["Product Requirements", "Feature Specifications", "User Flow Design", "API Documentation", "Acceptance Criteria", "Cross-functional Collaboration", "Sprint Planning", "Release Management"],
